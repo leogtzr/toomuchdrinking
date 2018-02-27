@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>quesenita</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="/css/core.css"
+          th:href="@{/css/core.css}"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+</head>
+<body>
+
+<div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block layout:fragment="content">
+    <div class="hero-unit content">
+        <h2>Digital IT Ops DZ Needs</h2>
+        <p>
+            Discutamos las necesidades del equipo.
+        </p>
+    </div>
+    <div class="content">
+
+            <div class="row">
+                <div class="col-sm">
+                    <form id="commentform">
+                        <div class="form-group">
+                            <div class='col-lg-6'>
+                                <label for="comment">Ingresa tu comentario</label>
+                                <textarea class="form-control" rows="3" id="comment" required="true"></textarea>
+                                <br/>
+                                <button type="submit" class="btn btn-primary">Envíar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+
+        <hr/>
+
+        <div class="row needstable" id="comments_table"/>
+
+    </div>
+    <footer>
+        <div th:replace="fragments/footer :: footer"></div>
+    </footer>
+</th:block>
+
+<script src="/js/qsn.js"></script>
+
+</body>
+</html>
