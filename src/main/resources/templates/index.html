@@ -4,7 +4,7 @@
       layout:decorate="~{layouts/layout}">
 
 <head>
-    <title>quesenita</title>
+    <title>toomuchdrinking</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
@@ -37,31 +37,12 @@
 
 <th:block layout:fragment="content">
     <div class="hero-unit content">
-        <h2>Digital IT Ops DZ Needs</h2>
+        <h2>Consumed Beers</h2>
         <p>
-            Discutamos las necesidades del equipo.
+            Recommended maximum intake of alcoholic beverages
         </p>
     </div>
     <div class="content">
-
-            <div class="row">
-                <div class="col-sm">
-                    <form id="commentform">
-                        <div class="form-group">
-                            <div class='col-lg-6'>
-                                <label for="comment">Ingresa tu comentario</label>
-                                <textarea class="form-control" rows="3" id="comment" required="true"></textarea>
-                                <br/>
-                                <button type="submit" class="btn btn-primary">Envíar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-        </div>
-
-        <hr/>
-
-        <div class="row needstable" id="comments_table"/>
 
     </div>
     <footer>
@@ -69,7 +50,7 @@
     </footer>
 </th:block>
 
-<script src="/js/qsn.js"></script>
+<script src="/js/beers.js"></script>
 
 </body>
 </html>
