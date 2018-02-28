@@ -2,11 +2,10 @@ package toomuchdrinking.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import toomuchdrinking.bean.Response;
+import toomuchdrinking.bean.BeersResponse;
 import toomuchdrinking.repository.ConsumedBeersRepository;
 
 import java.sql.SQLException;
-import java.util.Date;
 
 @RestController
 public class ConsumedBeerController {
@@ -14,9 +13,10 @@ public class ConsumedBeerController {
     @Autowired
     private ConsumedBeersRepository repository;
 
+    /*
     @PostMapping("/add")
-    public Response add(final @RequestParam("beer") String need) {
-        final Response resp = new Response();
+    public BeersResponse add(final @RequestParam("beer") String need) {
+        final BeersResponse resp = new BeersResponse();
         resp.setOk(true);
 
         try {
@@ -27,13 +27,14 @@ public class ConsumedBeerController {
 
         return resp;
     }
+    */
 
     @GetMapping("/beers")
-    public @ResponseBody Response beers() {
-        final Response resp = new Response();
+    public @ResponseBody BeersResponse beers() {
+        final BeersResponse resp = new BeersResponse();
         resp.setOk(true);
         try {
-            resp.setNeeds(repository.findAll());
+            resp.setDrinks(repository.findAll());
         } catch (final SQLException ex) {
             resp.setOk(false);
         }

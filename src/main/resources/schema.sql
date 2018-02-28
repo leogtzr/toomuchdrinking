@@ -1,7 +1,26 @@
-drop table if exists comments;
+DROP TABLE IF EXISTS DrinkType;
+DROP TABLE IF EXISTS Drinks;
 
-create table comments(
-    when varchar(40) primary key, comment varchar(500)
+create table DrinkType (
+    id integer primary key auto_increment not null,
+    type varchar(40) not null
 );
 
--- insert into comments values (now(), 'Alv');
+create table Drinks (
+    id integer primary key auto_increment not null,
+    drink_date date not null,
+    type varchar(50) not null,
+    qty integer not null,
+    milliliters integer not null,
+    abv decimal not null,
+    description varchar(70) not null,
+    FOREIGN KEY (type) references DrinkType(type)
+);
+
+CREATE INDEX drinks_drink_date_idx ON Drinks(drink_date);
+CREATE INDEX drink_type_type_idx ON DrinkType(type);
+
+INSERT INTO DrinkType(type) VALUES('Beer'); --1
+INSERT INTO DrinkType(type) VALUES('Whiskey'); --2
+
+INSERT INTO Drinks(drink_date, type, qty, milliliters, abv, description) values ('2018-03-13', 'Beer', 1, 335, 5.5, 'Carta Blanca');

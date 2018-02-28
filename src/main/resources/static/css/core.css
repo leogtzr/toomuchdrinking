@@ -27,3 +27,7 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+select.select-fixed-width {
+    width: 100px;
+}
