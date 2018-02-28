@@ -55,6 +55,12 @@
                         <small id="emailHelp" class="form-text text-muted">Carta Blanca, Bohemia, Heineken, etc ... </small>
                     </div>
                     <div class="form-group">
+                        <label for="qty">Tipo</label>
+                        <select class="form-control select-fixed-width" id="qty">
+                            <option th:each="type:${types}" th:text="${type.drink}" th:value="${type.id}">${type.id}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="qty">Cantidad</label>
                         <select class="form-control select-fixed-width" id="qty">
                             <option>1</option>

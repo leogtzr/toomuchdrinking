@@ -26,7 +26,7 @@ public class JdbcConsumedBeersRepository implements ConsumedBeersRepository {
 
     @Override
     public List<Drink> findAll() throws SQLException {
-        final List<Drink> drinks = template.query("select * from drinks", (rs, i) -> {
+        final List<Drink> drinks = template.query("select * from Drinks", (rs, i) -> {
             final Drink drink = new Drink();
             drink.setAbv(rs.getDouble("abv"));
 
@@ -35,6 +35,17 @@ public class JdbcConsumedBeersRepository implements ConsumedBeersRepository {
             return drink;
         });
         return drinks;
+    }
+
+    @Override
+    public List<DrinkType> drinkTypes() throws SQLException {
+        final List<DrinkType> types = template.query("select * from DrinkType", (rs, i) -> {
+            final DrinkType type = new DrinkType();
+            type.setId(rs.getInt("id"));
+            type.setDrink(rs.getString("type"));
+            return type;
+        });
+        return types;
     }
 
 }
