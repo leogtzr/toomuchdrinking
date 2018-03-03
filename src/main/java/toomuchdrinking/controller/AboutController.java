@@ -1,15 +1,13 @@
 package toomuchdrinking.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Map;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AboutController {
 
     @RequestMapping("/about")
-    public String welcome(final Map<String, Object> model) {
+    public String welcome() {
         return "about";
     }
 
