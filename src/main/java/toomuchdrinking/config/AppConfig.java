@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
-@ComponentScan(basePackages = {"toomuchdrinking", "toomuchdrinking.controller", "toomuchdrinking.repository"})
 public class AppConfig {
 
     @Autowired
