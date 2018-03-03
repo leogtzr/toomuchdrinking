@@ -48,21 +48,21 @@
             <div class="col-sm">
                 <div class='col-sm-5'>
 
-                <form>
+                <form id="adddrink">
                     <div class="form-group">
                         <label for="drinkname">Nombre de la bebida</label>
-                        <input type="text" class="form-control" id="drinkname" aria-describedby="drinkname" placeholder="Drink name"></input>
+                        <input type="text" class="form-control" id="drinkname" aria-describedby="drinkname" placeholder="Drink name" required="true"></input>
                         <small id="emailHelp" class="form-text text-muted">Carta Blanca, Bohemia, Heineken, etc ... </small>
                     </div>
                     <div class="form-group">
                         <label for="qty">Tipo</label>
-                        <select class="form-control select-fixed-width" id="qty">
+                        <select class="form-control select-fixed-width" id="type">
                             <option th:each="type:${types}" th:text="${type.drink}" th:value="${type.id}">${type.id}</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="qty">Cantidad</label>
-                        <select class="form-control select-fixed-width" id="qty">
+                        <select class="form-control select-fixed-width" id="qty" required="true">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -79,8 +79,13 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="ml">Mililitros</label>
+                        <input type="text" class="form-control" id="ml" aria-describedby="abv" placeholder="335" required="true"></input>
+                    </div>
+
+                    <div class="form-group">
                         <label for="abv">ABV %</label>
-                        <input type="text" class="form-control" id="abv" aria-describedby="abv" placeholder="ABV %, e.g: 5.5"></input>
+                        <input type="text" class="form-control" id="abv" aria-describedby="abv" placeholder="ABV %, e.g: 5.5" required="true"></input>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -96,7 +101,7 @@
     </footer>
 </th:block>
 
-<script src="/js/beers.js"></script>
+    <script src="/js/beers.js"></script>
 
 </body>
 </html>

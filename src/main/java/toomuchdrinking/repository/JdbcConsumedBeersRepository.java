@@ -7,29 +7,40 @@ import org.springframework.stereotype.Repository;
 import toomuchdrinking.bean.DrinkType;
 
 import java.sql.SQLException;
+import java.time.*;
+import java.time.format.*;
 import java.util.List;
 
 @Repository
 public class JdbcConsumedBeersRepository implements ConsumedBeersRepository {
 
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+
     private static final String INSERT_DRINK =
-            "INSERT INTO COMMENTS (when, comment) values(?, ?)";
+            "INSERT INTO Drinks(drink_date, type, qty, milliliters, abv, description) values (?, ?, ?, ?, ?, ?);"
+            ;
 
     @Autowired
     private JdbcTemplate template;
 
-    /*
     @Override
-    public void save(final String when, final String comment) throws SQLException {
-        // template.update(INSERT_COMMENT, new Object[] {when, comment});
-    }*/
+    public void save(
+            final String type,
+            final int qty,
+            final int milliliters,
+            final double abv,
+            final String description
+    ) throws SQLException {
+        template.update(INSERT_DRINK,
+                new Object[]{formatter.format(ZonedDateTime.now()), type, qty, milliliters, abv, description});
+    }
 
     @Override
     public List<Drink> findAll() throws SQLException {
         final List<Drink> drinks = template.query("select * from Drinks", (rs, i) -> {
             final Drink drink = new Drink();
             drink.setAbv(rs.getDouble("abv"));
-
+            drink.setMilliliters(rs.getInt("milliliters"));
             drink.setDescription(rs.getString("description"));
             drink.setQuantity(rs.getInt("qty"));
             return drink;
