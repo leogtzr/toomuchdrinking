@@ -2,7 +2,6 @@ package toomuchdrinking.repository;
 
 import toomuchdrinking.bean.Drink;
 import toomuchdrinking.bean.DrinkType;
-import toomuchdrinking.bean.DrinkTypesResponse;
 
 import java.sql.SQLException;
 import java.util.List;
