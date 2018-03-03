@@ -31,7 +31,7 @@ public class HomeControllerTest {
     private ConsumedBeersRepository repository;
 
     @Test
-    public void foo() throws Exception {
+    public void shouldRenderIndexPageWithSpecifiedOptions() throws Exception {
 
         final List<DrinkType> drinkTypes = Arrays.
                 asList(new DrinkType(1, "CERVEZA"),
