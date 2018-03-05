@@ -20,10 +20,6 @@ $(function () {
             dates.push(mlsperday[i].drinkDate);
         }
 
-        var randomScalingFactor = function() {
-                return Math.round(Math.random() * 100);
-            };
-
         var datapoints = mls;
         var config = {
             type: 'line',
@@ -73,13 +69,6 @@ $(function () {
             var ctx = document.getElementById('canvas').getContext('2d');
             window.myLine = new Chart(ctx, config);
         };
-
-            /*document.getElementById('randomizeData').addEventListener('click', function() {
-                for (var i = 0, len = datapoints.length; i < len; ++i) {
-                    datapoints[i] = Math.random() < 0.05 ? NaN : randomScalingFactor();
-                }
-                window.myLine.update();
-            });*/
 
     }
 
