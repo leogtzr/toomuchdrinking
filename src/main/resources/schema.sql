@@ -6,14 +6,14 @@ create table DrinkType (
     type varchar(40) not null
 );
 
-create table Drinks (
+create table Drinks (
     id integer primary key auto_increment not null,
-    drink_date date not null,
-    type varchar(50) not null,
-    qty integer not null,
+    drink_date date not null,
+    type varchar(50) not null,
+    qty integer not null,
     milliliters integer not null,
-    abv decimal not null,
-    description varchar(70) not null
+    abv decimal not null,
+    description varchar(70) not null
     -- FOREIGN KEY (type) references DrinkType(type)
 );
 
