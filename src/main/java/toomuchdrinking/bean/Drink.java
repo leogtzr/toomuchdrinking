@@ -3,6 +3,7 @@ package toomuchdrinking.bean;
 public class Drink {
 
     private double abv;
+    private String drinkDate;
     private DrinkType drinkType;
     private String description;
     private int quantity;
@@ -48,10 +49,19 @@ public class Drink {
         this.milliliters = milliliters;
     }
 
+    public String getDrinkDate() {
+        return drinkDate;
+    }
+
+    public void setDrinkDate(final String drinkDate) {
+        this.drinkDate = drinkDate;
+    }
+
     @Override
     public String toString() {
         return "Drink{" +
                 "abv=" + abv +
+                ", drinkDate='" + drinkDate + '\'' +
                 ", drinkType=" + drinkType +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +

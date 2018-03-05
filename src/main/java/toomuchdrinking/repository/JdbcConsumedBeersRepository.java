@@ -1,10 +1,9 @@
 package toomuchdrinking.repository;
 
-import toomuchdrinking.bean.Drink;
+import toomuchdrinking.bean.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import toomuchdrinking.bean.DrinkType;
 
 import java.sql.SQLException;
 import java.time.*;
@@ -39,6 +38,7 @@ public class JdbcConsumedBeersRepository implements ConsumedBeersRepository {
     public List<Drink> findAll() throws SQLException {
         final List<Drink> drinks = template.query("select * from Drinks", (rs, i) -> {
             final Drink drink = new Drink();
+            drink.setDrinkDate(rs.getString("drink_date"));
             drink.setAbv(rs.getDouble("abv"));
             drink.setMilliliters(rs.getInt("milliliters"));
             drink.setDescription(rs.getString("description"));
@@ -57,6 +57,18 @@ public class JdbcConsumedBeersRepository implements ConsumedBeersRepository {
             return type;
         });
         return types;
+    }
+
+    @Override
+    public List<MillilitersPerDay> mlsPerDay() throws SQLException {
+        final List<MillilitersPerDay> mls = template.
+                query("select drink_date, sum(qty * milliliters) from Drinks group by drink_date", (rs, i) -> {
+            final MillilitersPerDay mlsPerDay = new MillilitersPerDay();
+            mlsPerDay.setDrinkDate(rs.getString("drink_date"));
+            mlsPerDay.setMls(rs.getInt(2));
+            return mlsPerDay;
+        });
+        return mls;
     }
 
 }

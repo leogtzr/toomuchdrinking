@@ -8,12 +8,6 @@ $(document).ready(function() {
         var ml = $('#ml').val();
         var abv = $('#abv').val();
 
-        console.log(drinkName);
-        console.log(type);
-        console.log(qty);
-        console.log(ml);
-        console.log(abv);
-
         var response = $.ajax(
             {
                 data: {drinkName: drinkName, type: type, qty: qty, ml: ml, abv: abv},
