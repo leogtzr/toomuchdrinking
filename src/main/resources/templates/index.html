@@ -89,8 +89,17 @@
                         <input type="text" class="form-control" id="abv" aria-describedby="abv" placeholder="ABV %, e.g: 5.5" required="true"></input>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button class="btn btn-primary">Guardar</button>
                 </form>
+                
+                <div class="alert alert-success fade in alert-dismissible" style="margin-top:15px; display: none;">
+				    <strong>Success!</strong> Beer has been added.
+				</div>
+				
+				<div class="alert alert-danger fade in alert-dismissible" style="margin-top:15px; display: none;">
+				    <strong>Error </strong> adding drink info.
+				</div>
+
                 </div>
             </div>
 
