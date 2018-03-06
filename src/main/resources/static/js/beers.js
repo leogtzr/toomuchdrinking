@@ -1,24 +1,36 @@
-$(document).ready(function() {
+function hideAlerts() {
+  $('.alert-success').hide();
+  $('.alert-danger').hide();
+}
 
-    $('#adddrink').on('submit', function(e) {
+function cleanFields() {
+  $('#drinkname').val('');
+  $('#ml').val('');
+  $('#abv').val('');
+}
 
-        var drinkName = $('#drinkname').val();
-        var type = $('#type').val();
-        var qty = $('#qty').val();
-        var ml = $('#ml').val();
-        var abv = $('#abv').val();
+$('#adddrink').on('submit', function(e) {
+  hideAlerts();
 
-        var response = $.ajax(
-            {
-                data: {drinkName: drinkName, type: type, qty: qty, ml: ml, abv: abv},
-                method: 'POST',
-                url: 'add'
-            }
-        ).responseText;
+  var drinkName = $('#drinkname').val();
+  var type = $('#type').val();
+  var qty = $('#qty').val();
+  var ml = $('#ml').val();
+  var abv = $('#abv').val();
 
-        console.log(response);
-
-        e.preventDefault();
-    });
-
+  $.ajax({
+    data: { drinkName: drinkName, type: type, qty: qty, ml: ml, abv: abv },
+    method: 'POST',
+    url: 'add',
+    async: false
+  })
+  .done(function(data) {
+    $('.alert-success').show();
+    cleanFields();
+  })
+  .fail(function(jqXHR, textStatus) {
+    $('.alert-danger').show();
+  });
+  
+  e.preventDefault();
 });
