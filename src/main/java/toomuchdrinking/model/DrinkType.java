@@ -33,11 +33,16 @@ public class DrinkType {
 		this.type = type;
 	}
 
+	public DrinkType(final Long id, final String type) {
+        this.id = id;
+        this.type = type;
+    }
+
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -45,7 +50,7 @@ public class DrinkType {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(final String type) {
 		this.type = type;
 	}
 	

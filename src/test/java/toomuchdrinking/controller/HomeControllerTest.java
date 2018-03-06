@@ -12,7 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-//import toomuchdrinking.repository.ConsumedBeersRepository;
+import toomuchdrinking.model.*;
+import toomuchdrinking.repository.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,23 +27,23 @@ public class HomeControllerTest {
     @Autowired
     private MockMvc mvc;
 
-//    @MockBean
-//    private ConsumedBeersRepository repository;
-//
-//    @Test
-//    public void shouldRenderIndexPageWithSpecifiedOptions() throws Exception {
-//
-//        final List<DrinkType> drinkTypes = Arrays.
-//                asList(new DrinkType(1, "CERVEZA"),
-//                        new DrinkType(2, "Pulque")
-//                );
-//
-//        Mockito.when(repository.drinkTypes()).thenReturn(drinkTypes);
-//
-//        mvc.perform(
-//                MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML)).
-//                    andExpect(MockMvcResultMatchers.status().isOk()).
-//                        andExpect(content().string(CoreMatchers.containsString("Pulque")));
-//    }
+    @MockBean
+    private DrinkTypeRepository repository;
+
+    @Test
+    public void shouldRenderIndexPageWithSpecifiedOptions() throws Exception {
+
+        final List<DrinkType> drinkTypes = Arrays.
+                asList(new DrinkType(1L, "CERVEZA"),
+                        new DrinkType(2L, "Pulque")
+                );
+
+        Mockito.when(repository.findAll()).thenReturn(drinkTypes);
+
+        mvc.perform(
+                MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML)).
+                    andExpect(MockMvcResultMatchers.status().isOk()).
+                        andExpect(content().string(CoreMatchers.containsString("Pulque")));
+    }
 
 }
