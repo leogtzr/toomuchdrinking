@@ -3,20 +3,30 @@ package toomuchdrinking.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import toomuchdrinking.bean.*;
-import toomuchdrinking.repository.ConsumedBeersRepository;
+import toomuchdrinking.model.Drink;
+import toomuchdrinking.model.DrinkType;
+import toomuchdrinking.repository.DrinkRepository;
+import toomuchdrinking.repository.DrinkTypeRepository;
 
-import java.sql.SQLException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 @RestController
 public class ConsumedBeerController {
+	private static final Calendar CALENDAR = Calendar.getInstance();
 
-    @Autowired
-    private ConsumedBeersRepository repository;
+	@Autowired
+	private DrinkTypeRepository drinkTypeRepository;
+	
+	@Autowired
+	private DrinkRepository drinkRepository;
 
     @PostMapping("/add")
     public BeersResponse add(
             final @RequestParam("drinkName") String drinkName,
-            final @RequestParam("type") String type,
+            final @RequestParam("type") int type,
             final @RequestParam("qty") int qty,
             final @RequestParam("ml") int ml,
             final @RequestParam("abv") double abv
@@ -24,11 +34,14 @@ public class ConsumedBeerController {
         final BeersResponse resp = new BeersResponse();
         resp.setOk(true);
 
-        try {
-            repository.save(type, qty, ml, abv, drinkName);
-        } catch (final SQLException ex) {
-            resp.setOk(false);
-        }
+        final DrinkType drinkType = drinkTypeRepository.findOne((long)type);
+		if (drinkType == null) {
+			//drinkType does not exist
+			resp.setOk(false);
+		} else {
+			final Drink drink = new Drink(abv, new Date(CALENDAR.getTime().getTime()), drinkName, qty, ml, drinkType);
+			drinkRepository.save(drink);
+		}
 
         return resp;
     }
@@ -37,12 +50,11 @@ public class ConsumedBeerController {
     @GetMapping("/drinks")
     public @ResponseBody BeersResponse beers() {
         final BeersResponse resp = new BeersResponse();
+        final List<Drink> drinks = new ArrayList<>();
         resp.setOk(true);
-        try {
-            resp.setDrinks(repository.findAll());
-        } catch (final SQLException ex) {
-            resp.setOk(false);
-        }
+        
+		drinkRepository.findAll().forEach(dt -> drinks.add(dt));
+		resp.setDrinks(drinks);
 
         return resp;
     }
@@ -51,13 +63,9 @@ public class ConsumedBeerController {
     public @ResponseBody MillilitersPerDayResponse mlsPerDay() {
         final MillilitersPerDayResponse resp = new MillilitersPerDayResponse();
         resp.setOk(true);
-
-        try {
-            resp.setMls(repository.mlsPerDay());
-        } catch (final SQLException ex) {
-            resp.setOk(false);
-        }
-
+        
+        resp.setMls(drinkRepository.getMillilitersPerDay());
+        
         return resp;
     }
 
