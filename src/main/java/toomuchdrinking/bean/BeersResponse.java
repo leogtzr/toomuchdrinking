@@ -2,6 +2,8 @@ package toomuchdrinking.bean;
 
 import java.util.List;
 
+import toomuchdrinking.model.Drink;
+
 public class BeersResponse {
 
     private boolean ok;

@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label for="qty">Tipo</label>
                         <select class="form-control select-fixed-width" id="type">
-                            <option th:each="type:${types}" th:text="${type.drink}" th:value="${type.id}">${type.id}</option>
+                            <option th:each="drinkType:${drinkTypes}" th:text="${drinkType.type}" th:value="${drinkType.id}">${type.id}</option>
                         </select>
                     </div>
                     <div class="form-group">
