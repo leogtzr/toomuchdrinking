@@ -6,3 +6,7 @@ generated-src
 *.ipr
 *.iws
 out
+/target
+/.project
+/.classpath
+/.settings
