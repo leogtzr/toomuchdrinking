@@ -7,6 +7,6 @@ import toomuchdrinking.model.DrinkType;
 import java.util.List;
 
 public interface DrinkTypeRepository extends CrudRepository<DrinkType, Long> {
-	@Query(value = "SELECT DISTINCT(type) from drink_type")
+	@Query(value = "SELECT DISTINCT(type) from DrinkType")
     List<String> types();
 }
