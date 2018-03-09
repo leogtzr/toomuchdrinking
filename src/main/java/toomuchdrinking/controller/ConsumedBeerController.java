@@ -49,6 +49,15 @@ public class ConsumedBeerController {
 
     @GetMapping("/drinks")
     public @ResponseBody BeersResponse beers() {
+
+        System.out.println(System.getenv("JDBC_DATABASE_URL"));
+        System.out.println(System.getenv("JDBC_DATABASE_USERNAME"));
+        System.out.println(System.getenv("JDBC_DATABASE_PASSWORD"));
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println(System.getenv("SPRING_JDBC_DATABASE_URL"));
+        System.out.println(System.getenv("SPRING_JDBC_DATABASE_USERNAME"));
+        System.out.println(System.getenv("SPRING_JDBC_DATABASE_PASSWORD"));
+
         final BeersResponse resp = new BeersResponse();
         final List<Drink> drinks = new ArrayList<>();
         resp.setOk(true);
