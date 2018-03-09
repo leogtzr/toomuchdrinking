@@ -12,6 +12,7 @@ import java.net.URISyntaxException;
 @Configuration
 public class AppConfig {
 
+    /*
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -30,6 +31,6 @@ public class AppConfig {
                 password(System.getenv("JDBC_DATABASE_PASSWORD"));
 
         return dbBuilder.build();
-    }
+    }*/
 
 }
