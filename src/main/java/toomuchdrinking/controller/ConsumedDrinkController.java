@@ -16,7 +16,8 @@ import java.util.Calendar;
 import java.util.List;
 
 @RestController
-public class ConsumedBeerController {
+public class ConsumedDrinkController {
+
 	private static final Calendar CALENDAR = Calendar.getInstance();
 
 	@Autowired
@@ -63,7 +64,7 @@ public class ConsumedBeerController {
         final List<Drink> drinks = new ArrayList<>();
         resp.setOk(true);
         
-		drinkRepository.findAll().forEach(dt -> drinks.add(dt));
+		drinkRepository.findAll().forEach(drinks::add);
 		resp.setDrinks(drinks);
 
         return resp;
