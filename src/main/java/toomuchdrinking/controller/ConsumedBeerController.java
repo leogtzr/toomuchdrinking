@@ -9,6 +9,7 @@ import toomuchdrinking.repository.DrinkRepository;
 import toomuchdrinking.repository.DrinkTypeRepository;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -50,14 +51,6 @@ public class ConsumedBeerController {
     @GetMapping("/drinks")
     public @ResponseBody BeersResponse beers() {
 
-        System.out.println(System.getenv("JDBC_DATABASE_URL"));
-        System.out.println(System.getenv("JDBC_DATABASE_USERNAME"));
-        System.out.println(System.getenv("JDBC_DATABASE_PASSWORD"));
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println(System.getenv("SPRING_JDBC_DATABASE_URL"));
-        System.out.println(System.getenv("SPRING_JDBC_DATABASE_USERNAME"));
-        System.out.println(System.getenv("SPRING_JDBC_DATABASE_PASSWORD"));
-
         final BeersResponse resp = new BeersResponse();
         final List<Drink> drinks = new ArrayList<>();
         resp.setOk(true);
@@ -72,10 +65,15 @@ public class ConsumedBeerController {
     public @ResponseBody MillilitersPerDayResponse mlsPerDay() {
         final MillilitersPerDayResponse resp = new MillilitersPerDayResponse();
         resp.setOk(true);
-        
         resp.setMls(drinkRepository.getMillilitersPerDay());
-        
         return resp;
+    }
+
+    @GetMapping("/drinktypes")
+    public @ResponseBody List<DrinkType> drinkTypes() throws SQLException {
+        final List<DrinkType> types = new ArrayList<>();
+        drinkTypeRepository.findAll().forEach(types::add);
+        return types;
     }
 
 }
