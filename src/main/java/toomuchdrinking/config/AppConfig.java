@@ -17,6 +17,14 @@ public class AppConfig {
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
 
+        System.out.println(System.getenv("JDBC_DATABASE_URL"));
+        System.out.println(System.getenv("JDBC_DATABASE_USERNAME"));
+        System.out.println(System.getenv("JDBC_DATABASE_PASSWORD"));
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println(System.getenv("SPRING_JDBC_DATABASE_URL"));
+        System.out.println(System.getenv("SPRING_JDBC_DATABASE_USERNAME"));
+        System.out.println(System.getenv("SPRING_JDBC_DATABASE_PASSWORD"));
+
         final DataSourceBuilder dbBuilder = DataSourceBuilder.create();
         dbBuilder.url(System.getenv("JDBC_DATABASE_URL")).password(System.getenv("JDBC_DATABASE_USERNAME")).
                 password(System.getenv("JDBC_DATABASE_PASSWORD"));
