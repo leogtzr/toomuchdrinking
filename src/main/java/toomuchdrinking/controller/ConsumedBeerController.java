@@ -1,5 +1,6 @@
 package toomuchdrinking.controller;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import toomuchdrinking.bean.*;
@@ -24,6 +25,12 @@ public class ConsumedBeerController {
 	@Autowired
 	private DrinkRepository drinkRepository;
 
+	@ApiOperation(
+	        value = "Adds a drink",
+            notes = "Adds a drink",
+            response = BeersResponse.class,
+            produces = "application/json"
+    )
     @PostMapping("/add")
     public BeersResponse add(
             final @RequestParam("drinkName") String drinkName,
