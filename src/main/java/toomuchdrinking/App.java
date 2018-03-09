@@ -3,7 +3,11 @@ package toomuchdrinking;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"toomuchdrinking.repository", "toomuchdrinking.controller"})
+@SpringBootApplication(scanBasePackages = {
+        "toomuchdrinking.repository",
+        "toomuchdrinking.controller",
+        "toomuchdrinking.config"
+})
 public class App {
 	
     public static void main(final String[] args) {

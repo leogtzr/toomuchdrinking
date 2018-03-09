@@ -57,8 +57,7 @@ public class ConsumedDrinkController {
 
 
     @GetMapping("/drinks")
-    public @ResponseBody
-    DrinkResponse beers() {
+    public @ResponseBody DrinkResponse beers() {
 
         final DrinkResponse resp = new DrinkResponse();
         final List<Drink> drinks = new ArrayList<>();
