@@ -4,14 +4,14 @@ import java.util.List;
 
 import toomuchdrinking.model.Drink;
 
-public class BeersResponse {
+public class DrinkResponse {
 
     private boolean ok;
     private List<Drink> drinks;
 
-    public BeersResponse() {}
+    public DrinkResponse() {}
 
-    public BeersResponse(boolean ok, final List<Drink> drinks) {
+    public DrinkResponse(boolean ok, final List<Drink> drinks) {
         this.ok = ok;
         this.drinks = drinks;
     }
@@ -34,7 +34,7 @@ public class BeersResponse {
 
     @Override
     public String toString() {
-        return "BeersResponse{" +
+        return "DrinkResponse{" +
                 "ok=" + ok +
                 ", drinks=" + drinks +
                 '}';

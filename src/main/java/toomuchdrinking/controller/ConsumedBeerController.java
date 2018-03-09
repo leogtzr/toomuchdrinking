@@ -28,18 +28,18 @@ public class ConsumedBeerController {
 	@ApiOperation(
 	        value = "Adds a drink",
             notes = "Adds a drink",
-            response = BeersResponse.class,
+            response = DrinkResponse.class,
             produces = "application/json"
     )
     @PostMapping("/add")
-    public BeersResponse add(
+    public DrinkResponse add(
             final @RequestParam("drinkName") String drinkName,
             final @RequestParam("type") int type,
             final @RequestParam("qty") int qty,
             final @RequestParam("ml") int ml,
             final @RequestParam("abv") double abv
     ) {
-        final BeersResponse resp = new BeersResponse();
+        final DrinkResponse resp = new DrinkResponse();
         resp.setOk(true);
 
         final DrinkType drinkType = drinkTypeRepository.findOne((long)type);
@@ -56,9 +56,10 @@ public class ConsumedBeerController {
 
 
     @GetMapping("/drinks")
-    public @ResponseBody BeersResponse beers() {
+    public @ResponseBody
+    DrinkResponse beers() {
 
-        final BeersResponse resp = new BeersResponse();
+        final DrinkResponse resp = new DrinkResponse();
         final List<Drink> drinks = new ArrayList<>();
         resp.setOk(true);
         
