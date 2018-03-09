@@ -70,10 +70,8 @@ public class ConsumedBeerController {
     }
 
     @GetMapping("/drinktypes")
-    public @ResponseBody List<DrinkType> drinkTypes() throws SQLException {
-        final List<DrinkType> types = new ArrayList<>();
-        drinkTypeRepository.findAll().forEach(types::add);
-        return types;
+    public @ResponseBody List<String> drinkTypes() throws SQLException {
+        return drinkTypeRepository.types();
     }
 
 }
