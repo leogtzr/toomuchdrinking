@@ -10,7 +10,7 @@ import toomuchdrinking.bean.MillilitersPerDay;
 import toomuchdrinking.model.Drink;
 
 public interface DrinkRepository extends CrudRepository<Drink, Long>, JpaSpecificationExecutor<Drink> {
-	@Query(value = "SELECT new toomuchdrinking.bean.MillilitersPerDay(d.drinkDate, SUM(d.quantity * d.milliliters), d.abv) FROM Drink d GROUP BY d.drinkDate")
+	@Query(value = "SELECT new toomuchdrinking.bean.MillilitersPerDay(d.drinkDate, SUM(d.quantity * d.milliliters), d.abv) FROM Drink d GROUP BY d.drinkDate, d.abv")
 	List<MillilitersPerDay> getMillilitersPerDay();
 
 	@Query(value = "select * from Drinks limit 5", nativeQuery = true)
