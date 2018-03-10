@@ -8,10 +8,9 @@ public class MillilitersPerDay {
     private long mls;
     private double abv;
 
-    public MillilitersPerDay(final Date drinkDate, final long mls, final double abv) {
+    public MillilitersPerDay(final Date drinkDate, final long mls) {
         this.drinkDate = drinkDate;
         this.mls = mls;
-        this.abv = abv;
     }
 
     public Date getDrinkDate() {

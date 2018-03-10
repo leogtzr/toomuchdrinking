@@ -49,11 +49,20 @@
     </div>
     <div class="content">
         <div class="row">
-
             <div class="col-sm">
                 <div class='col-sm-6'>
                     <div>
                         <canvas id="canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <h2>You drank more than the suggested in the following countries</h2>
+                <div class='col-sm-6'>
+                    <div th:each="mx : ${max}">
+                        <h4><span th:text="${mx.key}"></span></h4>
+                        <span class="badge badge-pill badge-danger" th:each="dailyMax : ${mx.value}" th:text="${dailyMax}">jiji.</span>
                     </div>
                 </div>
             </div>

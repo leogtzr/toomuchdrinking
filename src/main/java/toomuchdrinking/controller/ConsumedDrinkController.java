@@ -8,28 +8,33 @@ import toomuchdrinking.model.Drink;
 import toomuchdrinking.model.DrinkType;
 import toomuchdrinking.repository.DrinkRepository;
 import toomuchdrinking.repository.DrinkTypeRepository;
+import toomuchdrinking.service.DrinkStatsService;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 public class ConsumedDrinkController {
 
-	private static final Calendar CALENDAR = Calendar.getInstance();
+    private static final Calendar CALENDAR = Calendar.getInstance();
 
-	@Autowired
-	private DrinkTypeRepository drinkTypeRepository;
-	
-	@Autowired
-	private DrinkRepository drinkRepository;
+    @Autowired
+    private DrinkTypeRepository drinkTypeRepository;
 
-	@ApiOperation(
-	        value = "Adds a drink",
+    @Autowired
+    private DrinkRepository drinkRepository;
+
+    @Autowired
+    private DrinkStatsService drinkStatsService;
+
+    @ApiOperation(
+            value = "Adds a drink",
             notes = "Adds a drink",
             response = DrinkResponse.class,
+            responseContainer = "DrinkResponse",
             produces = "application/json"
     )
     @PostMapping("/add")
@@ -44,13 +49,13 @@ public class ConsumedDrinkController {
         resp.setOk(true);
 
         final DrinkType drinkType = drinkTypeRepository.findOne((long)type);
-		if (drinkType == null) {
-			//drinkType does not exist
-			resp.setOk(false);
-		} else {
-			final Drink drink = new Drink(abv, new Date(CALENDAR.getTime().getTime()), drinkName, qty, ml, drinkType);
-			drinkRepository.save(drink);
-		}
+        if (drinkType == null) {
+            //drinkType does not exist
+            resp.setOk(false);
+        } else {
+            final Drink drink = new Drink(abv, new Date(CALENDAR.getTime().getTime()), drinkName, qty, ml, drinkType);
+            drinkRepository.save(drink);
+        }
 
         return resp;
     }
@@ -62,9 +67,9 @@ public class ConsumedDrinkController {
         final DrinkResponse resp = new DrinkResponse();
         final List<Drink> drinks = new ArrayList<>();
         resp.setOk(true);
-        
-		drinkRepository.findAll().forEach(drinks::add);
-		resp.setDrinks(drinks);
+
+        drinkRepository.findAll().forEach(drinks::add);
+        resp.setDrinks(drinks);
 
         return resp;
     }
@@ -74,7 +79,13 @@ public class ConsumedDrinkController {
         final MillilitersPerDayResponse resp = new MillilitersPerDayResponse();
         resp.setOk(true);
         resp.setMls(drinkRepository.getMillilitersPerDay());
+
         return resp;
+    }
+
+    @GetMapping("/maximums")
+    public @ResponseBody Map<DailyMaxKey, List<DailyMaximumDrinks>> maximums() {
+        return drinkStatsService.maximums();
     }
 
     @GetMapping("/drinktypes")
