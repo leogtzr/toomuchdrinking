@@ -37,7 +37,7 @@ public class DrinkStatsService {
             final double grams = drinks.
                     stream().
                     map(drink -> new MapperToCalculateGrams(drink.getAbv(), drink.getMilliliters())).
-                    mapToDouble(m -> ((m.getMls()) / 1000.0D) * ((m.getAbv()) / 100.0D) * PURE_ALCOHOL).sum();
+                    mapToDouble(m -> ((m.getMls() / 1000.0D) * ((m.getAbv() / 100.0D) * PURE_ALCOHOL))).sum();
             max.put(new DailyMaxKey(date, grams), passesMaxSuggestedAlcohol(grams));
         });
 
