@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = {
         "toomuchdrinking.repository",
         "toomuchdrinking.controller",
-        "toomuchdrinking.config"
+        "toomuchdrinking.config",
+        "toomuchdrinking.service"
 })
 public class App {
 	
