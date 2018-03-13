@@ -30,6 +30,9 @@ public class HomeControllerTest {
     @MockBean
     private DrinkTypeRepository repository;
 
+    @MockBean
+    private DrinkRepository drinkRepository;
+
     @Test
     public void shouldRenderIndexPageWithSpecifiedOptions() throws Exception {
 
@@ -44,6 +47,7 @@ public class HomeControllerTest {
                 MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML)).
                     andExpect(MockMvcResultMatchers.status().isOk()).
                         andExpect(content().string(CoreMatchers.containsString("Pulque")));
+
     }
 
 }
