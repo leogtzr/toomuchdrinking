@@ -10,16 +10,17 @@ import toomuchdrinking.repository.DrinkRepository;
 import toomuchdrinking.repository.DrinkTypeRepository;
 import toomuchdrinking.service.DrinkStatsService;
 
-import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RestController
 public class ConsumedDrinkController {
 
     private static final Calendar CALENDAR = Calendar.getInstance();
+    private static final DateFormat DRINK_DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     private DrinkTypeRepository drinkTypeRepository;
@@ -50,10 +51,11 @@ public class ConsumedDrinkController {
 
         final DrinkType drinkType = drinkTypeRepository.findOne((long)type);
         if (drinkType == null) {
-            //drinkType does not exist
             resp.setOk(false);
         } else {
-            final Drink drink = new Drink(abv, new Date(CALENDAR.getTime().getTime()), drinkName, qty, ml, drinkType);
+            final Drink drink =
+                    new Drink(abv, new java.sql.Date(CALENDAR.getTime().getTime()), drinkName, qty, ml, drinkType);
+            resp.setDrinks(Arrays.asList(drink));
             drinkRepository.save(drink);
         }
 
@@ -91,6 +93,24 @@ public class ConsumedDrinkController {
     @GetMapping("/drinktypes")
     public @ResponseBody List<String> drinkTypes() throws SQLException {
         return drinkTypeRepository.types();
+    }
+
+    @GetMapping("/drinkByDate")
+    public @ResponseBody DrinkResponse getDrinkByDate(final @RequestParam("drinkDate") String drinkDate) {
+
+        final DrinkResponse response = new DrinkResponse();
+        response.setOk(false);
+
+        try {
+            final java.util.Date parsed = DRINK_DATE_FORMATTER.parse(drinkDate);
+            final java.sql.Date date = new java.sql.Date(parsed.getTime());
+            final List<Drink> drinks = drinkRepository.findByDrinkDate(date);
+            response.setDrinks(drinks);
+            response.setOk(true);
+        } catch (final ParseException ex) {
+            response.setOk(false);
+        }
+        return response;
     }
 
 }

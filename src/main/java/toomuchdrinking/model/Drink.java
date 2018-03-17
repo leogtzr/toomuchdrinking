@@ -1,5 +1,7 @@
 package toomuchdrinking.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,14 +29,14 @@ public class Drink {
     private DrinkType drinkType;
     
     private double abv;
-    private java.sql.Date drinkDate;
+    private Date drinkDate;
     private String description;
     private int quantity;
     private int milliliters;
     
     protected Drink() {}
 
-    public Drink(final double abv, final java.sql.Date drinkDate, 
+    public Drink(final double abv, final Date drinkDate,
     		final String description, final int quantity, 
     		final int milliliters, final DrinkType drinkType) {
 		this.abv = abv;
@@ -53,7 +55,7 @@ public class Drink {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -61,15 +63,15 @@ public class Drink {
 		return abv;
 	}
 
-	public void setAbv(double abv) {
+	public void setAbv(final double abv) {
 		this.abv = abv;
 	}
 
-	public java.sql.Date getDrinkDate() {
+	public Date getDrinkDate() {
 		return drinkDate;
 	}
 
-	public void setDrinkDate(java.sql.Date drinkDate) {
+	public void setDrinkDate(final Date drinkDate) {
 		this.drinkDate = drinkDate;
 	}
 
@@ -77,7 +79,7 @@ public class Drink {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 
@@ -85,7 +87,7 @@ public class Drink {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(final int quantity) {
 		this.quantity = quantity;
 	}
 
@@ -93,7 +95,7 @@ public class Drink {
 		return milliliters;
 	}
 
-	public void setMilliliters(int milliliters) {
+	public void setMilliliters(final int milliliters) {
 		this.milliliters = milliliters;
 	}
 

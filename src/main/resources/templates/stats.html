@@ -62,7 +62,7 @@
                 <div class='col-sm-6'>
                     <div th:each="mx : ${max}">
                         <h4><span th:text="${mx.key}"></span></h4>
-                        <span class="badge badge-pill badge-danger" th:each="dailyMax : ${mx.value}" th:text="${dailyMax}">jiji.</span>
+                        <span class="badge badge-pill badge-danger" th:each="dailyMax : ${mx.value}" th:text="${dailyMax}"></span>
                     </div>
                 </div>
             </div>
