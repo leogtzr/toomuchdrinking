@@ -62,6 +62,49 @@ public class ConsumedDrinkController {
         return resp;
     }
 
+    @ApiOperation(
+            value = "Adds a drink in a specific date",
+            notes = "Adds a drink in a specific date",
+            response = DrinkResponse.class,
+            responseContainer = "DrinkResponse",
+            produces = "application/json"
+    )
+    @PostMapping("/addwithdate")
+    public DrinkResponse add(
+            final @RequestParam("drinkName") String drinkName,
+            final @RequestParam("drinkDate") String drinkDate,
+            final @RequestParam("type") int type,
+            final @RequestParam("qty") int qty,
+            final @RequestParam("ml") int ml,
+            final @RequestParam("abv") double abv
+    ) {
+        final DrinkResponse resp = new DrinkResponse();
+        resp.setOk(true);
+
+        final DrinkType drinkType = drinkTypeRepository.findOne((long)type);
+        if (drinkType == null) {
+            resp.setOk(false);
+        } else {
+
+            try {
+                final java.util.Date parsed = DRINK_DATE_FORMATTER.parse(drinkDate);
+                final java.sql.Date date = new java.sql.Date(parsed.getTime());
+
+                final Drink drink =
+                        new Drink(abv, date, drinkName, qty, ml, drinkType);
+                resp.setDrinks(Arrays.asList(drink));
+                drinkRepository.save(drink);
+
+                resp.setOk(true);
+            } catch (final ParseException ex) {
+                resp.setOk(false);
+            }
+
+        }
+
+        return resp;
+    }
+
 
     @GetMapping("/drinks")
     public @ResponseBody DrinkResponse beers() {
