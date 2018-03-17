@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 @RestController
@@ -153,6 +154,28 @@ public class ConsumedDrinkController {
         } catch (final ParseException ex) {
             response.setOk(false);
         }
+        return response;
+    }
+
+    @GetMapping("/normalize")
+    public @ResponseBody DrinkResponse normalize(final @RequestParam(required = false, defaultValue = "10") int days) {
+        final DrinkResponse response = new DrinkResponse();
+        response.setOk(true);
+
+        for (int i = 1; i <= days; i++) {
+            final Date date = Date.
+                    from(ZonedDateTime.now().minusDays(i).toInstant());
+            final java.sql.Date dbDate = new java.sql.Date(date.getTime());
+            final List<Drink> drinks = drinkRepository.findByDrinkDate(dbDate);
+            if (drinks.isEmpty()) {
+                final Drink emptyDrink =
+                        new Drink(0.0, dbDate, "EMPTY", 0, 0, new DrinkType(1L, "Beer"));
+                drinkRepository.save(emptyDrink);
+            }
+        }
+
+        response.setDrinks(drinkRepository.latestDrinks());
+
         return response;
     }
 
