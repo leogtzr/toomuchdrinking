@@ -31,7 +31,7 @@ public class DrinkStatsService {
 
         final Iterable<Drink> it = drinkRepository.findAll();
         final Map<Date, List<Drink>> map = StreamSupport.
-                stream(it.spliterator(), false).filter(d -> d.getQuantity() == 0).
+                stream(it.spliterator(), false).filter(d -> d.getQuantity() != 0).
                 collect(Collectors.groupingBy(Drink::getDrinkDate));
 
         map.forEach((date, drinks) -> {
