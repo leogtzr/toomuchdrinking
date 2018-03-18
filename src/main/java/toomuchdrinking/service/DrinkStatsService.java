@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 import toomuchdrinking.bean.DailyMaxKey;
 import toomuchdrinking.bean.DailyMaximumDrinks;
-import toomuchdrinking.bean.MapperToCalculateGrams;
 import toomuchdrinking.model.Drink;
 import toomuchdrinking.repository.DrinkRepository;
 import toomuchdrinking.util.SuggestedAlcohol;
