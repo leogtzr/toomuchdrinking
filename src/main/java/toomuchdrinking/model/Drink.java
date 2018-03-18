@@ -46,6 +46,12 @@ public class Drink {
 		this.milliliters = milliliters;
 		this.drinkType = drinkType;
 	}
+
+	public Drink(final double abv, final int quantity, final int milliliters) {
+		this.abv = abv;
+		this.quantity = quantity;
+		this.milliliters = milliliters;
+	}
         
 	public DrinkType getDrinkType() {
 		return drinkType;

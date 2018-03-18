@@ -8,6 +8,7 @@ import toomuchdrinking.bean.DailyMaximumDrinks;
 import toomuchdrinking.bean.MapperToCalculateGrams;
 import toomuchdrinking.model.Drink;
 import toomuchdrinking.repository.DrinkRepository;
+import toomuchdrinking.util.SuggestedAlcohol;
 
 import java.sql.Date;
 import java.util.Arrays;
@@ -19,8 +20,6 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class DrinkStatsService {
-
-    private static final double PURE_ALCOHOL = 789.24D;
 
     @Autowired
     private DrinkRepository drinkRepository;
@@ -35,10 +34,7 @@ public class DrinkStatsService {
                 collect(Collectors.groupingBy(Drink::getDrinkDate));
 
         map.forEach((date, drinks) -> {
-            final double grams = drinks.
-                    stream().
-                    map(drink -> new MapperToCalculateGrams(drink.getAbv(), drink.getMilliliters(), drink.getQuantity())).
-                    mapToDouble(m -> (((m.getMls() * m.getQuantity()) / 1000.0D) * ((m.getAbv() / 100.0D) * PURE_ALCOHOL))).sum();
+            final double grams = drinks.stream().mapToDouble(drink -> SuggestedAlcohol.calculateConsumedGrams(drink)).sum();
             max.put(new DailyMaxKey(date, grams), passesMaxSuggestedAlcohol(grams));
         });
 
