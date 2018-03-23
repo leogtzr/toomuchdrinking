@@ -24,7 +24,7 @@ public class HomeController {
     private DrinkRepository drinkRepository;
 
     @GetMapping("/")
-    String index(final Model model) throws SQLException {
+    String home(final Model model) throws SQLException {
         final List<DrinkType> drinkTypes = new ArrayList<>();
         drinkTypeRepository.findAll().forEach(drinkTypes::add);
         model.addAttribute("drinkTypes", drinkTypes);

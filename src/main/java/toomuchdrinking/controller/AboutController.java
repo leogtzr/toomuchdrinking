@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class AboutController {
 
     @RequestMapping("/about")
-    public String welcome() {
+    public String about() {
         return "about";
     }
 

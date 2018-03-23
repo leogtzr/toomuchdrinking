@@ -10,7 +10,7 @@ public class AppConfig {
 
     @Bean
     public EmbeddedServletContainerFactory servletContainer() {
-        TomcatEmbeddedServletContainerFactory factory =
+        final TomcatEmbeddedServletContainerFactory factory =
                 new TomcatEmbeddedServletContainerFactory();
         return factory;
     }
