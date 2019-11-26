@@ -1,6 +1,7 @@
 package toomuchdrinking.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import toomuchdrinking.bean.Ahorro;
 import toomuchdrinking.repository.AhorroRepository;
@@ -58,6 +59,12 @@ public class AhorroRest {
             sb.append(a.toStringWithPipes()).append("<br>");
         });
         return sb.toString();
+    }
+
+    @GetMapping("removeall")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void removeAll() {
+        ahorroRepository.deleteAll();
     }
 
 }

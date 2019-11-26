@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>leo-info alv</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="/css/core.css"
+          th:href="@{/css/core.css}"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+</head>
+<body>
+
+<div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Homieeeeee</a></li>
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/about">Acerca</a></li>
+                    <li><a href="/stats">Stats</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block layout:fragment="content">
+
+    <div class="content">
+        <div class="row">
+
+            <div class="col-lg">
+                <div class='col-lg-5'>
+                    <table style="width:100%" class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Fecha de corte</th>
+                            <th>Fecha limite de pago</th>
+                        </tr>
+                        <tr>
+                            <td>Uni Santander K</td>
+                            <td>06 de cada mes</td>
+                            <td>26 de cada mes</td>
+                        </tr>
+                        <tr>
+                            <td>Santander Light</td>
+                            <td>06 de cada mes</td>
+                            <td>28 de cada mes</td>
+                        </tr>
+                        <tr>
+                            <td>Fiesta Rewards</td>
+                            <td>06 de cada mes</td>
+                            <td>28 de cada mes</td>
+                        </tr>
+                        <tr>
+                            <td>Scotia Travel Oro</td>
+                            <td>16 de cada mes</td>
+                            <td>06 de cada mes</td>
+                        </tr>
+                        <tr>
+                            <td>Scotia Travel Oro</td>
+                            <td></td>
+                            <td>28 de cada mes</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+<!--    <footer>-->
+<!--        <div th:replace="fragments/footer :: footer"></div>-->
+<!--    </footer>-->
+</th:block>
+
+<script src="/js/beers.js"></script>
+
+</body>
+</html>
