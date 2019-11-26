@@ -50,7 +50,7 @@ public class ConsumedDrinkController {
         final DrinkResponse resp = new DrinkResponse();
         resp.setOk(true);
 
-        final DrinkType drinkType = drinkTypeRepository.findOne((long)type);
+        final DrinkType drinkType = drinkTypeRepository.findById((long)type).get();
         if (drinkType == null) {
             resp.setOk(false);
         } else {
@@ -82,7 +82,7 @@ public class ConsumedDrinkController {
         final DrinkResponse resp = new DrinkResponse();
         resp.setOk(true);
 
-        final DrinkType drinkType = drinkTypeRepository.findOne((long)type);
+        final DrinkType drinkType = drinkTypeRepository.findById((long)type).get();
         if (drinkType == null) {
             resp.setOk(false);
         } else {
