@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         "toomuchdrinking.repository",
         "toomuchdrinking.controller",
         "toomuchdrinking.config",
-        "toomuchdrinking.service"
+        "toomuchdrinking.service",
+        "toomuchdrinking.rest"
 })
 public class App {
 	
