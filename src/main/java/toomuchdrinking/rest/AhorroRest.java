@@ -55,7 +55,7 @@ public class AhorroRest {
     public String viewAll() {
         final StringBuilder sb = new StringBuilder();
         ahorroRepository.findAll().forEach(a -> {
-            sb.append(a.toStringWithPipes()).append("\n");
+            sb.append(a.toStringWithPipes()).append("<br>");
         });
         return sb.toString();
     }
