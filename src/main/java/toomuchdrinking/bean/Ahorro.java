@@ -55,4 +55,8 @@ public class Ahorro {
                 ", amount=" + amount +
                 '}';
     }
+
+    public String toStringWithPipes() {
+        return String.format("%10s | %10s", this.date.toString(), String.valueOf(this.amount));
+    }
 }

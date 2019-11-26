@@ -51,4 +51,13 @@ public class AhorroRest {
         return String.format("%s-(UPDATED)", ahorro);
     }
 
+    @GetMapping("all")
+    public String viewAll() {
+        final StringBuilder sb = new StringBuilder();
+        ahorroRepository.findAll().forEach(a -> {
+            sb.append(a.toStringWithPipes()).append("\n");
+        });
+        return sb.toString();
+    }
+
 }
